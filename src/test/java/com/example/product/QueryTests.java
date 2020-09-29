@@ -55,5 +55,10 @@ class QueryTests {
         assertEquals(100,productDetail.getSmallCount());
 
 
+        searchProducts=productRepository.findByCategory(shirt);
+
+        assertTrue(searchProducts.size()==2);
+
+
     }
 }
