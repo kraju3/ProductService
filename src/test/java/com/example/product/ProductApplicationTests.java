@@ -36,18 +36,18 @@ class ProductApplicationTests {
 
 		productRepository.save(new Product("Nylon Shirt","src/asserts/shirt.png",available,shirt,new Detail("A shirt",5,5,5,5)));
 		productRepository.save(new Product("Cotton Shirt","src/asserts/shirt.png",available,shirt,new Detail("A shirt",5,5,5,5)));
-		productRepository.save(new Product("Nylon Pant","src/asserts/pants.png",available,pant, new Detail("A pant",6,5,5,5)));
+		Product p = productRepository.save(new Product("Nylon Pant","src/asserts/pants.png",available,pant, new Detail("A pant",6,5,5,5)));
 		productRepository.save(new Product("Sweatpants","src/asserts/pants.png",!available,pant,new Detail("A pant",5,5,5,5)));
 
 		System.out.println("\n****Original List of Products*****");
 
 		productRepository.findAll().forEach(System.out::println);
 
-		assertEquals("Nylon Pant",productRepository.findById(5L).get().productName);
-		assertEquals(available,productRepository.findById(5L).get().isAvailable());
-		assertEquals("Pants",productRepository.findById(5L).get().getCategory().getCategoryName());
-		assertEquals("A pant",productRepository.findById(5L).get().getProductDetail().getDescription());
-		assertEquals(6,productRepository.findById(5L).get().getProductDetail().getSmallCount());
+		assertEquals("Nylon Pant",productRepository.findById(p.getProductID()).get().productName);
+		assertEquals(available,productRepository.findById(p.getProductID()).get().isAvailable());
+		assertEquals("Pants",productRepository.findById(p.getProductID()).get().getCategory().getCategoryName());
+		assertEquals("A pant",productRepository.findById(p.getProductID()).get().getProductDetail().getDescription());
+		assertEquals(6,productRepository.findById(p.getProductID()).get().getProductDetail().getSmallCount());
 
 	}
 
