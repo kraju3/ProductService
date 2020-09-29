@@ -44,7 +44,7 @@ class QueryTests {
         productRepository.save(new Product("Movado Fade","src/asserts/watch.png",available,accessories, new Detail("A watch",6,5,5,5)));
         productRepository.save(new Product("Timex","src/asserts/pants.png",!available,accessories,new Detail("A watch",5,5,5,5)));
 
-        List<Product> searchProducts = productRepository.findByProductName("Timex");
+        List<Product> searchProducts = productRepository.findByProductNameLike("%Timex%");
 
         searchProducts.forEach(System.out::println);
 
@@ -53,6 +53,12 @@ class QueryTests {
         Detail productDetail = productRepository.findById(p.getProductID()).get().getProductDetail();
 
         assertEquals(100,productDetail.getSmallCount());
+
+        searchProducts = productRepository.findByProductDetail( new Detail("A watch",6,5,5,5));
+
+        searchProducts.forEach(System.out::println);
+
+        assertEquals(2,searchProducts.size());
 
 
         searchProducts=productRepository.findByCategory(shirt);
