@@ -5,11 +5,12 @@ import com.example.product.domain.Detail;
 import com.example.product.domain.Product;
 import com.example.product.repository.CategoryRepository;
 import com.example.product.repository.ProductRepo;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class QueryTests {
     CategoryRepository categoryRepository;
 
     @Test
-    public void testQuery(){
+    public void QueryCheck(){
         boolean available = true;
         Category shirt = categoryRepository.save(new Category("Shirts"));
         Category pant = categoryRepository.save(new Category("Pants"));
