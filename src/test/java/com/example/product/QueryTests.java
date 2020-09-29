@@ -17,7 +17,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class QueryTests {
+class QueryTests {
 
     @Autowired
     ProductRepo productRepository;
