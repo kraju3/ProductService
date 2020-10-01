@@ -5,13 +5,13 @@ import com.example.product.domain.Detail;
 import com.example.product.domain.Product;
 import com.example.product.repository.CategoryRepository;
 import com.example.product.repository.ProductRepo;
-import static org.junit.Assert.*;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

@@ -1,13 +1,14 @@
 package com.example.product.domain;
 
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Detail {
-
+    @Column
     public String description;
-
+    @Column
     public int smallCount, largeCount, mediumCount, doubleXLCount;
 
 

@@ -4,7 +4,6 @@ import com.example.product.domain.Category;
 import com.example.product.domain.Detail;
 import com.example.product.domain.Product;
 import com.example.product.repository.CategoryRepository;
-import com.example.product.repository.ProductRepo;
 import com.example.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

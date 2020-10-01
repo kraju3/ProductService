@@ -3,12 +3,9 @@ package com.example.product.service;
 import com.example.product.domain.Product;
 import com.example.product.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping(path = "/products")
+
 @Service
 public class ProductService {
 
@@ -19,38 +16,25 @@ public class ProductService {
         this.productRepo = productRepo;
     }
 
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public Iterable<Product> getAllProducts() {
         return productRepo.findAll();
     }
 
-    @GetMapping(path="/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Product getProduct(@PathVariable(value="id") long productID){
+    public Product getProduct(long productID){
 
         return productRepo.findById(productID).orElseThrow();
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Product createProduct(@RequestBody Product p) {
-
-        return productRepo.save(p);
+    public void createProduct(Product p) {
+        productRepo.save(p);
     }
 
 
-    @DeleteMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteProduct(@PathVariable(value = "id") long productID) {
-        productRepo.findById(productID).ifPresent(product -> {
-            productRepo.delete(product);
-        });
+    public void deleteProduct(long productID) {
+        productRepo.deleteById(productID);
     }
 
-    @PutMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Product updateProduct(@PathVariable(value = "id") long productID, @RequestBody Product product) {
+    public Product updateProduct(long productID,Product product) {
         productRepo.findById(productID).ifPresent(product1 -> {
             product1.setAvailable(product.isAvailable());
             product1.setCategory(product.getCategory());
@@ -64,5 +48,12 @@ public class ProductService {
         return productRepo.findById((productID)).get();
 
     }
+
+    public boolean verify(long productID){
+        return productRepo.existsById(productID);
+    }
+
+
+
 
 }
