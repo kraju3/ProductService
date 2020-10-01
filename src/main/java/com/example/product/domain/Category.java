@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="CATEGORY")
+@Table(name = "CATEGORY")
 public class Category {
     @Id
     @GeneratedValue
-    @Column(name="categoryID")
+    @Column(name = "categoryID")
     private long categoryID;
 
-    @Column(name="categoryName")
+    @Column(name = "categoryName")
     public String categoryName;
 
-    @OneToMany(mappedBy = "category",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
 
     public long getCategoryID() {
@@ -36,7 +36,7 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public Category(){
+    public Category() {
 
     }
 

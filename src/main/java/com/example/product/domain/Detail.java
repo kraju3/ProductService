@@ -2,15 +2,13 @@ package com.example.product.domain;
 
 
 import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
-import java.util.HashMap;
 
 @Embeddable
 public class Detail {
 
     public String description;
 
-    public int smallCount,largeCount,mediumCount,doubleXLCount;
+    public int smallCount, largeCount, mediumCount, doubleXLCount;
 
 
     public String getDescription() {
@@ -61,7 +59,7 @@ public class Detail {
         this.doubleXLCount = doubleXLCount;
     }
 
-    public Detail(){
+    public Detail() {
 
     }
 

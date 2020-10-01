@@ -1,38 +1,56 @@
 package com.example.product.service;
 
-import com.example.product.domain.Category;
-import com.example.product.domain.Detail;
 import com.example.product.domain.Product;
 import com.example.product.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping(path = "/products")
 @Service
 public class ProductService {
 
     private ProductRepo productRepo;
 
     @Autowired
-    public ProductService(ProductRepo productRepo){
-        this.productRepo=productRepo;
+    public ProductService(ProductRepo productRepo) {
+        this.productRepo = productRepo;
     }
 
-    public Iterable<Product> getAllProducts(){
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Iterable<Product> getAllProducts() {
         return productRepo.findAll();
     }
 
-    public Product createProduct(Product p){
+    @GetMapping(path="/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Product getProduct(@PathVariable(value="id") long productID){
+
+        return productRepo.findById(productID).orElseThrow();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product createProduct(@RequestBody Product p) {
 
         return productRepo.save(p);
     }
 
-    public void deleteProduct(long productID) {
+
+    @DeleteMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable(value = "id") long productID) {
         productRepo.findById(productID).ifPresent(product -> {
             productRepo.delete(product);
         });
     }
 
-    public Product updateProduct(long productID,Product product){
+    @PutMapping(path = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Product updateProduct(@PathVariable(value = "id") long productID, @RequestBody Product product) {
         productRepo.findById(productID).ifPresent(product1 -> {
             product1.setAvailable(product.isAvailable());
             product1.setCategory(product.getCategory());
